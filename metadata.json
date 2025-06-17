@@ -1,0 +1,6 @@
+{
+  "name": "AWS Certification Quiz Simulator",
+  "description": "A web application to simulate AWS certification quizzes, allowing users to select a certification, take a timed quiz, and review their scores and answers. It uses a static set of questions.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Quiz de Certificação AWS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for selected/correct/incorrect options */
+    .quiz-option.selected.correct {
+      background-color: #22C55E; /* green-500 */
+      border-color: #16A34A; /* green-600 */
+      color: white;
+    }
+    .quiz-option.selected.incorrect {
+      background-color: #EF4444; /* red-500 */
+      border-color: #DC2626; /* red-600 */
+      color: white;
+    }
+    .quiz-option.correct-reveal { /* For review screen or immediate reveal if user was wrong */
+      background-color: #A7F3D0; /* green-200 */
+      border-color: #6EE7B7; /* green-300 */
+      color: #065F46; /* green-800 */
+    }
+     body {
+      font-family: 'Inter', sans-serif; /* A common, clean sans-serif font */
+    }
+    /* Add a subtle animation for card hover */
+    .transform.hover\\:-translate-y-1:hover {
+        --tw-translate-y: -0.25rem; /* Equivalent to -translate-y-1 */
+    }
+    /* Styling for feedback icons to ensure they are vertically aligned */
+    .quiz-option svg {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    /* Specific styles for ScoreScreen review options */
+    div.selected.correct {
+        background-color: #22C55E; /* green-500 */
+        border-color: #16A34A; /* green-600 */
+        color: white;
+    }
+    div.selected.incorrect {
+        background-color: #EF4444; /* red-500 */
+        border-color: #DC2626; /* red-600 */
+        color: white;
+    }
+    div.correct-reveal {
+        background-color: #A7F3D0; /* green-200 */
+        border-color: #6EE7B7; /* green-300 */
+        color: #065F46; /* green-800 */
+    }
+    div.selected.correct svg,
+    div.selected.incorrect svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Styles for code blocks in questions (base) */
+    .question-code-block {
+      background-color: #1e1e1e; /* VS Code Dark+ background */
+      color: #d4d4d4; /* Default text color */
+      font-family: 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+      padding: 1rem;
+      border-radius: 0.375rem; /* rounded-md */
+      overflow-x: auto;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem; /* text-sm */
+      line-height: 1.5;
+      border: 1px solid #333;
+      text-align: left;
+      white-space: pre; /* Use pre for better control, pre-wrap can be used if wrapping is essential */
+    }
+
+    /* Styles for inline code snippets */
+    .question-inline-code {
+      font-family: 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+      background-color: #333; 
+      color: #CE9178; /* Light orange/brown, good for inline strings or variables */
+      padding: 0.2em 0.4em;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      border: 1px solid #444;
+    }
+    
+    /* JSON & YAML Syntax Highlighting Tokens */
+    .token-punctuation { color: #d4d4d4; } /* Braces, brackets, commas, colons */
+    .token-key { color: #9CDCFE; } /* JSON keys, YAML keys */
+    .token-string { color: #CE9178; } /* String values */
+    .token-number { color: #B5CEA8; } /* Numeric values */
+    .token-boolean { color: #569CD6; } /* true, false */
+    .token-null { color: #569CD6; } /* null */
+
+    /* YAML specific */
+    .token-yaml-comment { color: #6A9955; font-style: italic; } /* Comments */
+    .token-yaml-indicator { color: #c586c0; } /* Hyphens for lists, etc. */
+    .token-yaml-anchor { color: #c586c0; } 
+    .token-yaml-tag { color: #c586c0; }
+    .token-yaml-value { color: #CE9178; } /* Default for unquoted YAML values if not string/num/bool */
+
+  </style>
+
+<link rel="stylesheet" href="./index.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/aws-quiz/assets/index-B6Kv2Q3R.js"></script>
+</head>
+<body class="bg-white text-gray-900">
+  <div id="root"></div>
+</body>
+</html>

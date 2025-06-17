@@ -1,0 +1,61 @@
+# =========================================================================
+# Arquivos de Log e Depuração
+# =========================================================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================================================================
+# Pasta de Dependências
+# Use 'npm install' para recriá-la.
+# =========================================================================
+node_modules/
+
+# =========================================================================
+# Pasta de Build e Distribuição
+# Gerada a partir do código-fonte.
+# =========================================================================
+dist/
+build/
+.next/
+out/
+
+# =========================================================================
+# Arquivos de Ambiente (sensíveis)
+# =========================================================================
+.env
+.env.local
+.env.*.local
+# IMPORTANTE: Mantenha o arquivo de exemplo no repositório!
+!/.env.example
+
+# =========================================================================
+# Relatórios de Teste e Cobertura de Código
+# =========================================================================
+coverage/
+.nyc_output/
+
+# =========================================================================
+# Arquivos de Sistema Operacional (macOS, Windows, etc.)
+# =========================================================================
+# macOS
+.DS_Store
+.AppleDouble
+._*
+.Trashes
+__MACOSX/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# =========================================================================
+# Arquivos de Configuração de Editores e IDEs
+# =========================================================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

@@ -1,3 +1,4 @@
+
 import { Question, Certification } from '../types';
 
 export enum CertificationId {
@@ -14,8 +15,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa1',
     text: 'Uma empresa precisa garantir que os dados em trânsito para seus buckets Amazon S3 sejam criptografados. Qual mecanismo deve ser implementado para atender a esse requisito?',
-    options: ['Configurar políticas de bucket S3 para negar solicitações HTTP.', 'Habilitar a criptografia do lado do servidor (SSE) nos buckets S3.', 'Usar listas de controle de acesso (ACLs) para restringir o acesso.', 'Implementar HTTPS para todas as conexões aos endpoints S3.'],
-    correctAnswerIndex: 3,
+    options: ['Implementar HTTPS para todas as conexões aos endpoints S3.', 'Configurar políticas de bucket S3 para negar solicitações HTTP.', 'Habilitar a criptografia do lado do servidor (SSE) nos buckets S3.', 'Usar listas de controle de acesso (ACLs) para restringir o acesso.'],
+    correctAnswerIndex: 0, // Original: 3
     explanation: 'Para criptografar dados em trânsito para o Amazon S3, deve-se usar HTTPS. As políticas de bucket S3 podem impor o uso de HTTPS (aws:SecureTransport). SSE protege dados em repouso.',
     domain: 'Projetar Arquiteturas Seguras',
   },
@@ -46,16 +47,16 @@ const saaQuestions: Question[] = [
   {
     id: 'saa5',
     text: 'Uma aplicação web hospedada no Amazon EC2 precisa de acesso seguro a uma tabela do Amazon DynamoDB. Qual é a maneira MAIS segura de conceder essas permissões?',
-    options: ['Embutir as chaves de acesso do AWS IAM no código da aplicação.', 'Armazenar as chaves de acesso em um arquivo de configuração na instância EC2.', 'Criar uma role do IAM com as permissões necessárias e anexá-la à instância EC2.', 'Permitir acesso anônimo à tabela DynamoDB e proteger no nível da aplicação.'],
-    correctAnswerIndex: 2,
+    options: ['Embutir as chaves de acesso do AWS IAM no código da aplicação.', 'Criar uma role do IAM com as permissões necessárias e anexá-la à instância EC2.', 'Armazenar as chaves de acesso em um arquivo de configuração na instância EC2.', 'Permitir acesso anônimo à tabela DynamoDB e proteger no nível da aplicação.'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'Usar roles do IAM para instâncias EC2 é a maneira mais segura, pois fornece credenciais temporárias para a instância, eliminando a necessidade de gerenciar chaves de acesso de longo prazo.',
     domain: 'Projetar Arquiteturas Seguras',
   },
   {
     id: 'saa6',
     text: 'Qual serviço da AWS fornece proteção contra ataques DDoS comuns que visam sites ou aplicações?',
-    options: ['AWS WAF', 'Amazon GuardDuty', 'AWS Shield Standard', 'AWS Inspector'],
-    correctAnswerIndex: 2,
+    options: ['AWS Shield Standard', 'AWS WAF', 'Amazon GuardDuty', 'AWS Inspector'],
+    correctAnswerIndex: 0, // Original: 2
     explanation: 'O AWS Shield Standard é ativado automaticamente para todos os clientes da AWS sem custo adicional e fornece proteção contra os ataques DDoS de infraestrutura (camadas 3 e 4) mais comuns.',
     domain: 'Projetar Arquiteturas Seguras',
   },
@@ -86,8 +87,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa10',
     text: 'Uma empresa precisa armazenar segredos, como senhas de banco de dados e chaves de API, e controlar seu acesso. Qual serviço da AWS é o mais adequado para essa finalidade?',
-    options: ['AWS Key Management Service (KMS)', 'AWS Secrets Manager', 'Parâmetros do AWS Systems Manager Parameter Store (tipo SecureString)', 'Armazenar em arquivos criptografados no Amazon S3.'],
-    correctAnswerIndex: 1,
+    options: ['AWS Secrets Manager', 'AWS Key Management Service (KMS)', 'Parâmetros do AWS Systems Manager Parameter Store (tipo SecureString)', 'Armazenar em arquivos criptografados no Amazon S3.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'O AWS Secrets Manager helps a proteger os segredos necessários para acessar suas aplicações, serviços e recursos de TI. O serviço permite que você alterne, gerencie e recupere facilmente credenciais de banco de dados, chaves de API e outros segredos durante todo o ciclo de vida.',
     domain: 'Projetar Arquiteturas Seguras',
   },
@@ -103,12 +104,12 @@ const saaQuestions: Question[] = [
     id: 'saa12',
     text: 'Qual política do IAM permite que um usuário leia objetos de um bucket S3 específico chamado `my-document-bucket`?',
     options: [
-      '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-document-bucket/*"}]}',
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:ListBucket", "Resource": "arn:aws:s3:::my-document-bucket"}]}',
+      '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-document-bucket/*"}]}',
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:PutObject", "Resource": "arn:aws:s3:::my-document-bucket/*"}]}',
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "s3:*", "Resource": "arn:aws:s3:::*"}]}'
     ],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 1, // Original: 0
     explanation: 'A ação `s3:GetObject` permite ler objetos. O recurso `arn:aws:s3:::my-document-bucket/*` especifica todos os objetos dentro do bucket `my-document-bucket`.',
     domain: 'Projetar Arquiteturas Seguras',
   },
@@ -116,7 +117,7 @@ const saaQuestions: Question[] = [
     id: 'saa13',
     text: 'Uma empresa está migrando um servidor de arquivos local para a AWS e precisa de uma solução de armazenamento de arquivos totalmente gerenciada, compatível com os protocolos SMB e NFS. Qual serviço AWS atende a esses requisitos?',
     options: ['Amazon S3', 'Amazon EBS (Elastic Block Store)', 'Amazon FSx for Windows File Server / Amazon FSx for Lustre', 'AWS Storage Gateway File Gateway'],
-    correctAnswerIndex: 2, // FSx for Windows for SMB, FSx for Lustre/NetApp ONTAP for NFS.
+    correctAnswerIndex: 2, 
     explanation: 'O Amazon FSx oferece sistemas de arquivos totalmente gerenciados de terceiros com a compatibilidade e os conjuntos de recursos nativos para cargas de trabalho comerciais e de código aberto. FSx for Windows File Server suporta SMB, e FSx for Lustre/NetApp ONTAP suportam NFS.',
     domain: 'Projetar Arquiteturas Seguras',
   },
@@ -148,16 +149,16 @@ const saaQuestions: Question[] = [
   {
     id: 'saa17',
     text: 'Uma aplicação web precisa escalar automaticamente o número de instâncias EC2 com base na demanda. Qual combinação de serviços AWS permite isso?',
-    options: ['Amazon Route 53 e Elastic Load Balancing.', 'Elastic Load Balancing e AWS Auto Scaling.', 'AWS Auto Scaling e Amazon S3.', 'Amazon EC2 e Amazon CloudWatch.'],
-    correctAnswerIndex: 1,
+    options: ['Elastic Load Balancing e AWS Auto Scaling.', 'Amazon Route 53 e Elastic Load Balancing.', 'AWS Auto Scaling e Amazon S3.', 'Amazon EC2 e Amazon CloudWatch.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'O AWS Auto Scaling monitora suas aplicações e ajusta automaticamente a capacidade para manter um desempenho estável e previsível com o menor custo possível. O Elastic Load Balancing distribui o tráfego entre as instâncias escaladas.',
     domain: 'Projetar Arquiteturas Resilientes',
   },
   {
     id: 'saa18',
     text: 'Qual estratégia de recuperação de desastres (DR) na AWS normalmente oferece o menor RTO (Recovery Time Objective) e RPO (Recovery Point Objective)?',
-    options: ['Backup e Restauração', 'Piloto Light (Pilot Light)', 'Espera Quente (Warm Standby)', 'Multi-Site Ativo/Ativo'],
-    correctAnswerIndex: 3,
+    options: ['Backup e Restauração', 'Piloto Light (Pilot Light)', 'Multi-Site Ativo/Ativo', 'Espera Quente (Warm Standby)'],
+    correctAnswerIndex: 2, // Original: 3
     explanation: 'Multi-Site Ativo/Ativo é uma estratégia onde a carga de trabalho é totalmente funcional em múltiplas regiões ou AZs. Oferece o menor RTO e RPO, mas geralmente é a mais cara e complexa de implementar.',
     domain: 'Projetar Arquiteturas Resilientes',
   },
@@ -172,14 +173,14 @@ const saaQuestions: Question[] = [
   {
     id: 'saa20',
     text: 'Qual tipo de Elastic Load Balancer é mais adequado para balanceamento de carga de tráfego HTTP e HTTPS e fornece roteamento avançado baseado em solicitações?',
-    options: ['Classic Load Balancer', 'Network Load Balancer', 'Application Load Balancer', 'Gateway Load Balancer'],
-    correctAnswerIndex: 2,
+    options: ['Classic Load Balancer', 'Application Load Balancer', 'Network Load Balancer', 'Gateway Load Balancer'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'O Application Load Balancer (ALB) opera na camada 7 (aplicação) e é ideal para balanceamento de carga de tráfego HTTP/HTTPS. Ele oferece recursos como roteamento baseado em caminho, host e cabeçalho.',
     domain: 'Projetar Arquiteturas Resilientes',
   },
   {
     id: 'saa21',
-    text: 'Para um sistema de processamento de pedidos que usa Amazon SQS, como você pode garantir que as mensagens sejam processadas mesmo se uma instância de processamento falhar?',
+    text: 'Para um sistema de processamento de pedidos que usa Amazon SQS, como você can garantir que as mensagens sejam processadas mesmo se uma instância de processamento falhar?',
     options: ['Aumentar o tempo limite de visibilidade da mensagem.', 'Usar filas FIFO do SQS.', 'Implementar uma Dead-Letter Queue (DLQ).', 'Diminuir o número de tentativas de recebimento de mensagem.'],
     correctAnswerIndex: 2,
     explanation: 'Uma Dead-Letter Queue (DLQ) pode ser usada para coletar mensagens que não puderam ser processadas com sucesso após um certo número de tentativas. Isso permite isolar e analisar mensagens problemáticas sem interromper o fluxo principal.',
@@ -228,8 +229,8 @@ const saaQuestions: Question[] = [
    {
     id: 'saa27',
     text: 'Para uma aplicação que armazena dados de sessão de usuário, qual serviço da AWS oferece um armazenamento de chave-valor em memória, altamente disponível e escalável, com baixa latência?',
-    options: ['Amazon RDS', 'Amazon S3', 'Amazon DynamoDB', 'Amazon ElastiCache (Redis ou Memcached)'],
-    correctAnswerIndex: 3,
+    options: ['Amazon RDS', 'Amazon S3', 'Amazon ElastiCache (Redis ou Memcached)', 'Amazon DynamoDB'],
+    correctAnswerIndex: 2, // Original: 3
     explanation: 'O Amazon ElastiCache é um serviço web que facilita a implantação, operação e escalabilidade de um cache na nuvem em memória. Ele melhora o desempenho das aplicações web, permitindo que você recupere informações de caches rápidos e gerenciados, em vez de depender inteiramente de bancos de dados mais lentos baseados em disco.',
     domain: 'Projetar Arquiteturas Resilientes',
   },
@@ -277,8 +278,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa33',
     text: 'Uma aplicação que realiza análises complexas em grandes conjuntos de dados precisa de instâncias EC2 com alta capacidade de processamento paralelo. Qual família de instâncias EC2 é otimizada para essa finalidade?',
-    options: ['Família T (Burstable Performance)', 'Família M (General Purpose)', 'Família C (Compute Optimized)', 'Família P ou G (Accelerated Computing/GPU)'],
-    correctAnswerIndex: 3, // P para GPU de propósito geral, G para gráficos intensivos. Para "processamento paralelo complexo", GPUs são a melhor aposta.
+    options: ['Família P ou G (Accelerated Computing/GPU)', 'Família T (Burstable Performance)', 'Família M (General Purpose)', 'Família C (Compute Optimized)'],
+    correctAnswerIndex: 0, // Original: 3
     explanation: 'As famílias de instâncias P e G são instâncias de computação acelerada que usam GPUs para fornecer capacidade de processamento paralelo massiva, ideal para machine learning, computação de alto desempenho (HPC) e cargas de trabalho gráficas.',
     domain: 'Projetar Arquiteturas de Alto Desempenho',
   },
@@ -293,8 +294,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa35',
     text: 'Uma aplicação precisa de uma solução de armazenamento com IOPS consistentemente alto (dezenas de milhares) para seu banco de dados. Qual tipo de volume EBS é o mais adequado?',
-    options: ['General Purpose SSD (gp3)', 'Provisioned IOPS SSD (io1/io2 Block Express)', 'Throughput Optimized HDD (st1)', 'Cold HDD (sc1)'],
-    correctAnswerIndex: 1,
+    options: ['Provisioned IOPS SSD (io1/io2 Block Express)', 'General Purpose SSD (gp3)', 'Throughput Optimized HDD (st1)', 'Cold HDD (sc1)'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'Os volumes Provisioned IOPS SSD (io1, io2 e io2 Block Express) são projetados para cargas de trabalho críticas e intensivas em E/S que exigem desempenho de IOPS consistentemente alto ou mais de 16.000 IOPS ou 250 MiB/s de throughput por volume.',
     domain: 'Projetar Arquiteturas de Alto Desempenho',
   },
@@ -341,8 +342,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa41',
     text: 'Qual é uma consideração chave para otimizar o desempenho de consultas no Amazon Athena?',
-    options: ['Armazenar dados em formato JSON não compactado.', 'Usar arquivos pequenos e numerosos.', 'Particionar os dados e usar formatos colunares como Parquet ou ORC.', 'Evitar o uso de predicados (cláusulas WHERE).'],
-    correctAnswerIndex: 2,
+    options: ['Armazenar dados em formato JSON não compactado.', 'Particionar os dados e usar formatos colunares como Parquet ou ORC.', 'Usar arquivos pequenos e numerosos.', 'Evitar o uso de predicados (cláusulas WHERE).'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'Particionar os dados no S3 (por exemplo, por data) e usar formatos de arquivo colunares (como Apache Parquet ou ORC) pode melhorar significativamente o desempenho das consultas do Athena e reduzir os custos, pois o Athena pode escanear menos dados.',
     domain: 'Projetar Arquiteturas de Alto Desempenho',
   },
@@ -358,7 +359,7 @@ const saaQuestions: Question[] = [
     id: 'saa43',
     text: 'Uma aplicação web experimenta picos de tráfego. Qual tipo de política de escalonamento do AWS Auto Scaling responde mais rapidamente às mudanças na demanda?',
     options: ['Escalonamento Simples (Simple Scaling)', 'Escalonamento Programado (Scheduled Scaling)', 'Escalonamento por Passos (Step Scaling) ou Escalonamento com Rastreamento de Alvo (Target Tracking Scaling)', 'Escalonamento Preditivo (Predictive Scaling)'],
-    correctAnswerIndex: 2, // Target Tracking é geralmente o mais fácil de configurar e responde bem. Step scaling oferece mais controle.
+    correctAnswerIndex: 2,
     explanation: 'Políticas de escalonamento com Rastreamento de Alvo (Target Tracking) e por Passos (Step Scaling) são mais responsivas do que o Escalonamento Simples. O Rastreamento de Alvo ajusta a capacidade para manter uma métrica específica em um valor alvo, enquanto o Escalonamento por Passos permite definir diferentes ações de escalonamento com base no tamanho da violação do alarme.',
     domain: 'Projetar Arquiteturas de Alto Desempenho',
   },
@@ -373,8 +374,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa45',
     text: 'Uma aplicação precisa de um banco de dados NoSQL totalmente gerenciado que ofereça desempenho de milissegundos de um dígito em qualquer escala. Qual serviço da AWS é o mais indicado?',
-    options: ['Amazon RDS for PostgreSQL', 'Amazon Redshift', 'Amazon DynamoDB', 'Amazon ElastiCache for Memcached'],
-    correctAnswerIndex: 2,
+    options: ['Amazon RDS for PostgreSQL', 'Amazon DynamoDB', 'Amazon Redshift', 'Amazon ElastiCache for Memcached'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'O Amazon DynamoDB é um banco de dados de chave-valor e de documentos que oferece desempenho de milissegundos de um dígito em qualquer escala. É um banco de dados totalmente gerenciado, multirregional e durável com segurança, backup e restauração integrados.',
     domain: 'Projetar Arquiteturas de Alto Desempenho',
   },
@@ -390,8 +391,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa47',
     text: 'Para dados armazenados no Amazon S3 que são acessados com pouca frequência, mas precisam estar disponíveis rapidamente quando solicitados, qual classe de armazenamento oferece um equilíbrio entre custo de armazenamento e custo de recuperação?',
-    options: ['S3 Standard', 'S3 Intelligent-Tiering', 'S3 Standard-Infrequent Access (S3 Standard-IA)', 'S3 Glacier Flexible Retrieval'],
-    correctAnswerIndex: 2,
+    options: ['S3 Standard-Infrequent Access (S3 Standard-IA)', 'S3 Standard', 'S3 Intelligent-Tiering', 'S3 Glacier Flexible Retrieval'],
+    correctAnswerIndex: 0, // Original: 2
     explanation: 'O S3 Standard-IA é ideal para dados acessados com menos frequência, mas que exigem acesso rápido quando necessário. Oferece menor custo de armazenamento que o S3 Standard, mas com uma taxa de recuperação de dados.',
     domain: 'Projetar Arquiteturas Otimizadas em Custos',
   },
@@ -414,8 +415,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa50',
     text: 'Qual classe de armazenamento do Amazon S3 é projetada para arquivamento de dados de longo prazo, onde o acesso infrequente é aceitável e um tempo de recuperação de minutos a horas é tolerável, oferecendo o menor custo de armazenamento?',
-    options: ['S3 Standard-IA', 'S3 One Zone-IA', 'S3 Glacier Flexible Retrieval', 'S3 Glacier Deep Archive'],
-    correctAnswerIndex: 3,
+    options: ['S3 Standard-IA', 'S3 One Zone-IA', 'S3 Glacier Deep Archive', 'S3 Glacier Flexible Retrieval'],
+    correctAnswerIndex: 2, // Original: 3
     explanation: 'O S3 Glacier Deep Archive é a classe de armazenamento de menor custo da Amazon S3 e suporta retenção de dados de longo prazo e arquivamento digital para dados que são acessados uma ou duas vezes por ano. Os tempos de recuperação são tipicamente dentro de 12 horas.',
     domain: 'Projetar Arquiteturas Otimizadas em Custos',
   },
@@ -446,7 +447,7 @@ const saaQuestions: Question[] = [
   {
     id: 'saa54',
     text: 'Qual das seguintes é uma estratégia eficaz para otimizar os custos de transferência de dados na AWS?',
-    options: ['Sempre transferir dados entre regiões diferentes.', 'Usar o Amazon CloudFront para entregar conteúdo aos usuários, pois a transferência de dados do CloudFront para a internet é frequentemente mais barata do que do S3 ou EC2 diretamente.', 'Evitar a compactação de dados antes da transferência.', 'Usar apenas conexões não criptografadas para reduzir a sobrecarga.'],
+    options: ['Sempre transferir dados entre regiões diferentes.', 'Usar o Amazon CloudFront para entregar conteúdo aos usuários, pois a transferência de dados do CloudFront para la internet é frequentemente mais barata do que do S3 ou EC2 diretamente.', 'Evitar a compactação de dados antes da transferência.', 'Usar apenas conexões não criptografadas para reduzir a sobrecarga.'],
     correctAnswerIndex: 1,
     explanation: 'O Amazon CloudFront pode ajudar a reduzir os custos de transferência de dados de saída, pois os preços para transferência de dados do CloudFront para a internet são geralmente mais baixos e estruturados em camadas. Além disso, ele armazena dados em cache mais perto dos usuários.',
     domain: 'Projetar Arquiteturas Otimizadas em Custos',
@@ -454,8 +455,8 @@ const saaQuestions: Question[] = [
   {
     id: 'saa55',
     text: 'O que são "Savings Plans" da AWS e como eles se comparam às Instâncias Reservadas (RIs)?',
-    options: ['São descontos aplicados automaticamente ao uso de instâncias Spot.', 'São um modelo de precificação flexível que oferece preços mais baixos em troca de um compromisso de uso (medido em $/hora) para um período de 1 ou 3 anos, aplicável ao EC2, Fargate e Lambda.', 'São específicos para armazenamento S3, oferecendo descontos para grandes volumes.', 'São créditos promocionais que podem ser usados para qualquer serviço AWS.'],
-    correctAnswerIndex: 1,
+    options: ['São descontos aplicados automaticamente ao uso de instâncias Spot.', 'São específicos para armazenamento S3, oferecendo descontos para grandes volumes.', 'São um modelo de precificação flexível que oferece preços mais baixos em troca de um compromisso de uso (medido em $/hora) para um período de 1 ou 3 anos, aplicável ao EC2, Fargate e Lambda.', 'São créditos promocionais que podem ser usados para qualquer serviço AWS.'],
+    correctAnswerIndex: 2, // Original: 1
     explanation: 'Os Savings Plans são um modelo de precificação flexível que oferece economia de até 72% no uso de computação da AWS. Eles fornecem preços mais baixos em troca de um compromisso de uma quantidade consistente de uso (medido em $/hora) por um período de 1 ou 3 anos. Eles são mais flexíveis que as RIs padrão, pois se aplicam automaticamente ao uso elegível em diferentes famílias de instâncias, tamanhos, SOs e regiões (dependendo do tipo de Savings Plan).',
     domain: 'Projetar Arquiteturas Otimizadas em Custos',
   },
@@ -508,8 +509,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva1',
     text: 'Um desenvolvedor está escrevendo uma função AWS Lambda que precisa ler dados de uma tabela Amazon DynamoDB. Qual é a maneira recomendada de interagir com o DynamoDB a partir do Lambda usando o AWS SDK?',
-    options: ['Fazer chamadas HTTP diretas para o endpoint da API do DynamoDB.', 'Usar o AWS SDK específico da linguagem (por exemplo, AWS SDK for Python - Boto3) para chamar as operações da API do DynamoDB.', 'Conectar-se à tabela DynamoDB usando JDBC.', 'Exportar a tabela DynamoDB para S3 e ler do S3.'],
-    correctAnswerIndex: 1,
+    options: ['Usar o AWS SDK específico da linguagem (por exemplo, AWS SDK for Python - Boto3) para chamar as operações da API do DynamoDB.', 'Fazer chamadas HTTP diretas para o endpoint da API do DynamoDB.', 'Conectar-se à tabela DynamoDB usando JDBC.', 'Exportar la tabela DynamoDB para S3 e ler do S3.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'O AWS SDK fornece uma maneira conveniente e de alto nível para interagir com os serviços AWS, incluindo o DynamoDB. Ele lida com a autenticação, serialização de solicitações e novas tentativas.',
     domain: 'Desenvolvimento com Serviços AWS',
   },
@@ -540,8 +541,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva5',
     text: 'Ao desenvolver uma API RESTful usando o Amazon API Gateway e AWS Lambda, como os dados da solicitação do cliente (por exemplo, parâmetros de consulta, corpo da solicitação) são passados para a função Lambda de backend?',
-    options: ['Como variáveis de ambiente da função Lambda.', 'Através de um bucket S3 intermediário.', 'Como parte do objeto de evento (event object) passado para o handler da função Lambda.', 'A função Lambda deve buscar os dados diretamente do API Gateway usando um ID de solicitação.'],
-    correctAnswerIndex: 2,
+    options: ['Como parte do objeto de evento (event object) passado para o handler da função Lambda.', 'Como variáveis de ambiente da função Lambda.', 'Através de um bucket S3 intermediário.', 'A função Lambda deve buscar os dados diretamente do API Gateway usando um ID de solicitação.'],
+    correctAnswerIndex: 0, // Original: 2
     explanation: 'O API Gateway mapeia a solicitação do cliente para um objeto JSON (evento) que é passado para a função Lambda integrada. Este objeto de evento contém informações sobre a solicitação, incluindo cabeçalhos, parâmetros de caminho/consulta e o corpo.',
     domain: 'Desenvolvimento com Serviços AWS',
   },
@@ -629,8 +630,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva16',
     text: 'Qual é a melhor prática para gerenciar credenciais AWS que uma aplicação executada no Amazon EC2 precisa para acessar outros serviços AWS?',
-    options: ['Armazenar as chaves de acesso do IAM em um arquivo de configuração na instância.', 'Embutir as chaves de acesso diretamente no código da aplicação.', 'Usar IAM Roles para instâncias EC2.', 'Criar um usuário IAM para cada instância EC2.'],
-    correctAnswerIndex: 2,
+    options: ['Armazenar as chaves de acesso do IAM em um arquivo de configuração na instância.', 'Usar IAM Roles para instâncias EC2.', 'Embutir as chaves de acesso diretamente no código da aplicação.', 'Criar um usuário IAM para cada instância EC2.'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'IAM Roles para instâncias EC2 fornecem credenciais temporárias que as aplicações podem usar para fazer chamadas à API da AWS. Isso elimina a necessidade de gerenciar chaves de acesso de longo prazo e é a prática recomendada.',
     domain: 'Segurança',
   },
@@ -645,9 +646,9 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva18',
     text: 'Como um desenvolvedor pode criptografar variáveis de ambiente confidenciais para uma função AWS Lambda?',
-    options: ['As variáveis de ambiente são criptografadas por padrão e não precisam de ação adicional.', 'Usar o AWS Secrets Manager para armazenar os valores e recuperá-los no código da função.', 'Habilitar a criptografia em repouso para variáveis de ambiente usando uma chave gerenciada pelo cliente (CMK) do AWS KMS na configuração da função.', 'Armazenar as variáveis em texto simples, pois o ambiente Lambda é seguro.'],
-    correctAnswerIndex: 2, // AWS Lambda supports encryption at rest for environment variables using KMS. Secrets Manager is another option for retrieval within the function.
-    explanation: 'O AWS Lambda permite que você criptografe suas variáveis de ambiente em repouso usando uma chave do AWS Key Management Service (KMS), seja uma chave gerenciada pela AWS ou uma chave gerenciada pelo cliente (CMK).',
+    options: ['As variáveis de ambiente são criptografadas por padrão e não precisam de ação adicional.', 'Habilitar a criptografia em repouso para variáveis de ambiente usando uma chave gerenciada pelo cliente (CMK) do AWS KMS na configuração da função.', 'Usar o AWS Secrets Manager para armazenar os valores e recuperá-los no código da função.', 'Armazenar as variáveis em texto simples, pois o ambiente Lambda é seguro.'],
+    correctAnswerIndex: 1, // Original: 2 (KMS method) Secrets Manager is also very valid.
+    explanation: 'O AWS Lambda permite que você criptografe suas variáveis de ambiente em repouso usando uma chave do AWS Key Management Service (KMS), seja uma chave gerenciada pela AWS ou uma chave gerenciada pelo cliente (CMK). Alternativamente, o Secrets Manager é uma prática robusta para gerenciar e buscar segredos em tempo de execução.',
     domain: 'Segurança',
   },
   {
@@ -656,10 +657,10 @@ const dvaQuestions: Question[] = [
     options: [
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"AWS": "arn:aws:iam::123456789012:role/MyRole"}, "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-secure-bucket/*"}]}',
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Deny", "NotPrincipal": {"AWS": "arn:aws:iam::123456789012:role/MyRole"}, "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-secure-bucket/*"}]}',
-      '{"Version": "2012-10-17", "Statement": [{"Effect": "Deny", "Principal": "*", "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-secure-bucket/*", "Condition": {"StringNotLike": {"aws:userId": "AROA1234567890EXAMPLE:*"}}}]}', // Condition is tricky, NotPrincipal is more direct
+      '{"Version": "2012-10-17", "Statement": [{"Effect": "Deny", "Principal": "*", "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-secure-bucket/*", "Condition": {"StringNotLike": {"aws:userId": "AROA1234567890EXAMPLE:*"}}}]}',
       '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": "*", "Action": "s3:GetObject", "Resource": "arn:aws:s3:::my-secure-bucket/*"}]}'
     ],
-    correctAnswerIndex: 1, // Using Deny with NotPrincipal is a common pattern to achieve this.
+    correctAnswerIndex: 1, 
     explanation: 'Para permitir acesso apenas a uma role específica e negar a todos os outros, uma política de negação com `NotPrincipal` é eficaz. A declaração de negação se aplica a qualquer principal que NÃO seja `arn:aws:iam::123456789012:role/MyRole`. É importante ter cuidado com `Deny` e `NotPrincipal` para evitar bloqueios acidentais.',
     domain: 'Segurança',
   },
@@ -714,7 +715,7 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva26',
     text: 'Para proteger dados confidenciais armazenados em um volume Amazon EBS, qual medida de segurança deve ser implementada?',
-    options: ['Configurar Security Groups para a instância EC2.', 'Habilitar a criptografia do volume EBS.', 'Usar NACLs na sub-rede.', 'Fazer snapshots frequentes do volume.'],
+    options: ['Configurar Security Groups para a instância EC2.', 'Habilitar la criptografia do volume EBS.', 'Usar NACLs na sub-rede.', 'Fazer snapshots frequentes do volume.'],
     correctAnswerIndex: 1,
     explanation: 'A criptografia do Amazon EBS oferece uma solução simples de criptografia para seus volumes EBS. Todos os dados em repouso dentro do volume, snapshots criados a partir do volume e dados movidos entre o volume e a instância são criptografados.',
     domain: 'Segurança',
@@ -722,8 +723,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva27',
     text: 'Um desenvolvedor está construindo uma aplicação que usa o Amazon API Gateway. Para limitar o número de solicitações que um cliente pode fazer à API dentro de um determinado período, qual recurso deve ser configurado?',
-    options: ['Planos de Uso (Usage Plans) com cotas e limites de taxa (throttling).', 'Autorizadores Lambda.', 'Políticas de Recursos do API Gateway.', 'Modelos de Mapeamento.'],
-    correctAnswerIndex: 0,
+    options: ['Autorizadores Lambda.', 'Políticas de Recursos do API Gateway.', 'Modelos de Mapeamento.', 'Planos de Uso (Usage Plans) com cotas e limites de taxa (throttling).'],
+    correctAnswerIndex: 3, // Original: 0
     explanation: 'Os Planos de Uso do Amazon API Gateway permitem que você defina limites de taxa (throttling) e cotas para suas APIs, que podem ser associados a chaves de API de clientes para controlar e limitar o acesso.',
     domain: 'Segurança',
   },
@@ -764,7 +765,7 @@ const dvaQuestions: Question[] = [
     id: 'dva32',
     text: 'Um desenvolvedor precisa implantar uma aplicação web baseada em Docker na AWS sem gerenciar a infraestrutura subjacente de servidores. Qual serviço é mais adequado?',
     options: ['Amazon EC2 com Docker instalado manually.', 'AWS Fargate com Amazon ECS ou Amazon EKS.', 'AWS Lambda.', 'AWS Elastic Beanstalk com plataforma Docker (se quiser abstração de PaaS).'],
-    correctAnswerIndex: 1, // Fargate é a resposta mais serverless para contêineres. Beanstalk também pode, mas Fargate é mais direto.
+    correctAnswerIndex: 1,
     explanation: 'O AWS Fargate é um mecanismo de computação serverless para contêineres que funciona com o Amazon Elastic Container Service (ECS) e o Amazon Elastic Kubernetes Service (EKS). O Fargate elimina a necessidade de provisionar e gerenciar servidores.',
     domain: 'Implantação',
   },
@@ -779,8 +780,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva34',
     text: 'Qual estratégia de implantação do AWS CodeDeploy minimiza o tempo de inatividade, implantando a nova versão da aplicação em um novo conjunto de instâncias e, em seguida, transferindo o tráfego para elas?',
-    options: ['In-place deployment', 'Blue/green deployment', 'Rolling update', 'Canary deployment'],
-    correctAnswerIndex: 1,
+    options: ['Blue/green deployment', 'In-place deployment', 'Rolling update', 'Canary deployment'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'A implantação azul/verde (blue/green) envolve a criação de um novo ambiente (verde) para a nova versão da aplicação ao lado do ambiente existente (azul). Após o teste, o tráfego é roteado para o ambiente verde. Isso permite um rollback rápido, se necessário.',
     domain: 'Implantação',
   },
@@ -892,15 +893,15 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva48',
     text: 'Qual ferramenta da AWS ajuda os desenvolvedores a analisar e depurar aplicações distribuídas e microsserviços, fornecendo um mapa de serviço e rastreamento de solicitações de ponta a ponta?',
-    options: ['Amazon CloudWatch ServiceLens', 'AWS X-Ray', 'AWS CodeGuru Profiler', 'AWS Trusted Advisor'],
-    correctAnswerIndex: 1,
+    options: ['Amazon CloudWatch ServiceLens', 'AWS Trusted Advisor', 'AWS CodeGuru Profiler', 'AWS X-Ray'],
+    correctAnswerIndex: 3, // Original: 1 (AWS X-Ray)
     explanation: 'O AWS X-Ray helps os desenvolvedores a analisar e depurar aplicações de produção, como aquelas construídas usando uma arquitetura de microsserviços. Ele fornece uma visão de ponta a ponta das solicitações à medida que elas viajam por sua aplicação e mostra um mapa dos componentes subjacentes da sua aplicação.',
     domain: 'Solução de Problemas e Otimização',
   },
   {
     id: 'dva49',
     text: 'Uma função AWS Lambda está atingindo o tempo limite (timeout) consistentemente. Qual é uma das primeiras coisas a verificar e potencialmente ajustar para resolver isso?',
-    options: ['Aumentar a concorrência provisionada da função.', 'Aumentar a configuração de memória da função (que também aumenta a CPU alocada) ou o valor de timeout.', 'Diminuir o número de variáveis de ambiente.', 'Verificar os logs do CloudTrail.'],
+    options: ['Aumentar a concorrência provisionada da função.', 'Aumentar a configuração de memória da função (que também aumenta la CPU alocada) ou o valor de timeout.', 'Diminuir o número de variáveis de ambiente.', 'Verificar os logs do CloudTrail.'],
     correctAnswerIndex: 1,
     explanation: 'Se uma função Lambda está atingindo o tempo limite, pode ser porque ela não tem tempo suficiente para concluir sua execução ou porque está com falta de recursos de CPU/memória. Aumentar o valor de timeout ou a alocação de memória (que também afeta a CPU) são etapas comuns de solução de problemas.',
     domain: 'Solução de Problemas e Otimização',
@@ -916,7 +917,7 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva51',
     text: 'Um desenvolvedor observa que as solicitações para uma tabela Amazon DynamoDB estão sendo limitadas (throttled). O que isso indica e qual é uma possível solução?',
-    options: ['Indica um problema de rede; verifique las NACLs.', 'Indica que a capacidade de leitura ou escrita provisionada para a tabela foi excedida; aumente a capacidade provisionada ou use o modo On-Demand.', 'Indica um erro no código da aplicação; depure a lógica.', 'Indica que a tabela está cheia; exclua alguns itens.'],
+    options: ['Indica um problema de rede; verifique las NACLs.', 'Indica que a capacidade de leitura ou escrita provisionada para la tabela foi excedida; aumente a capacidade provisionada ou use o modo On-Demand.', 'Indica um erro no código da aplicação; depure a lógica.', 'Indica que a tabela está cheia; exclua alguns itens.'],
     correctAnswerIndex: 1,
     explanation: 'O throttling no DynamoDB (ThrottledRequests) ocorre quando as solicitações excedem a capacidade de leitura ou escrita provisionada da tabela ou de um índice. A solução é aumentar a capacidade provisionada, otimizar os padrões de acesso ou mudar para o modo de capacidade On-Demand.',
     domain: 'Solução de Problemas e Otimização',
@@ -932,8 +933,8 @@ const dvaQuestions: Question[] = [
   {
     id: 'dva53',
     text: 'Ao otimizar uma função AWS Lambda para custo e desempenho, por que é importante escolher a configuração de memória correta?',
-    options: ['A memória não afeta o desempenho, apenas o custo.', 'A AWS aloca poder de CPU proporcional à memória configurada; mais memória significa mais CPU, o que pode reduzir o tempo de execução e, às vezes, o custo geral.', 'Menos memória sempre resulta em menor custo, independentemente do tempo de execução.', 'A configuração de memória afeta apenas o armazenamento temporário disponível para a função.'],
-    correctAnswerIndex: 1,
+    options: ['A AWS aloca poder de CPU proporcional à memória configurada; mais memória significa mais CPU, o que pode reduzir o tempo de execução e, às vezes, o custo geral.', 'A memória não afeta o desempenho, apenas o custo.', 'Menos memória sempre resulta em menor custo, independentemente do tempo de execução.', 'A configuração de memória afeta apenas o armazenamento temporário disponível para a função.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'No AWS Lambda, a quantidade de CPU alocada para sua função é proporcional à quantidade de memória configurada. Aumentar a memória pode levar a tempos de execução mais curtos. Como o custo é uma função da memória e do tempo de execução, encontrar o equilíbrio certo pode otimizar tanto o desempenho quanto o custo.',
     domain: 'Solução de Problemas e Otimização',
   },
@@ -965,7 +966,7 @@ const dvaQuestions: Question[] = [
     id: 'dva57',
     text: 'Um desenvolvedor precisa entender por que uma query específica do DynamoDB está lenta. Qual recurso do DynamoDB pode fornecer métricas detalhadas sobre a execução da query, como o número de itens escaneados e retornados?',
     options: ['Habilitar o DynamoDB Streams.', 'Usar a opção `ReturnConsumedCapacity` na chamada da API da query e analisar as `ConsumedReadCapacityUnits`.', 'Verificar os logs do CloudTrail.', 'Analisar as métricas da tabela no CloudWatch, como `SuccessfulRequestLatency`.'],
-    correctAnswerIndex: 1, // ReturnConsumedCapacity é chave. CloudWatch metrics dão visão geral, não de query específica.
+    correctAnswerIndex: 1,
     explanation: 'Ao fazer uma solicitação de leitura (como GetItem, Query ou Scan) ao DynamoDB, você pode incluir o parâmetro `ReturnConsumedCapacity` para obter informações sobre a quantidade de capacidade de leitura consumida. Isso helps a entender a eficiência da query. Para Scan/Query, o `ScannedCount` vs `Count` também é informativo.',
     domain: 'Solução de Problemas e Otimização',
   },
@@ -1002,8 +1003,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf1',
     text: 'Qual das seguintes opções MELHOR descreve a agilidade como um benefício da computação em nuvem AWS?',
-    options: ['A capacidade de adquirir hardware físico rapidamente.', 'A capacidade de experimentar e inovar rapidamente, provisionando e desprovisionando recursos conforme necessário.', 'A segurança física dos data centers da AWS.', 'Contratos de longo prazo com preços fixos.'],
-    correctAnswerIndex: 1,
+    options: ['A capacidade de experimentar e inovar rapidamente, provisionando e desprovisionando recursos conforme necessário.', 'A capacidade de adquirir hardware físico rapidamente.', 'A segurança física dos data centers da AWS.', 'Contratos de longo prazo com preços fixos.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'Agilidade na nuvem refere-se à capacidade de obter recursos de TI rapidamente, permitindo que as empresas experimentem, inovem e respondam às mudanças do mercado com mais velocidade do que com a infraestrutura local tradicional.',
     domain: 'Conceitos de Nuvem',
   },
@@ -1034,8 +1035,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf5',
     text: 'Qual dos seguintes é um benefício principal de usar a computação em nuvem?',
-    options: ['Aumentar o tempo gasto no gerenciamento de infraestrutura.', 'Trocar despesas de capital por despesas variáveis.', 'Reduzir a velocidade e agilidade.', 'Diminuir o alcance global.'],
-    correctAnswerIndex: 1,
+    options: ['Aumentar o tempo gasto no gerenciamento de infraestrutura.', 'Reduzir a velocidade e agilidade.', 'Trocar despesas de capital por despesas variáveis.', 'Diminuir o alcance global.'],
+    correctAnswerIndex: 2, // Original: 1
     explanation: 'A computação em nuvem permite que as empresas troquem despesas de capital (como data centers e servidores físicos) por despesas variáveis, pagando apenas pelos recursos de TI que consomem.',
     domain: 'Conceitos de Nuvem',
   },
@@ -1131,8 +1132,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf17',
     text: 'Qual serviço da AWS é usado para gerenciar usuários, grupos e permissões de acesso aos recursos da AWS?',
-    options: ['Amazon VPC', 'AWS Identity and Access Management (IAM)', 'AWS Shield', 'Amazon Inspector'],
-    correctAnswerIndex: 1,
+    options: ['AWS Identity and Access Management (IAM)', 'Amazon VPC', 'AWS Shield', 'Amazon Inspector'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'O AWS IAM permite que você gerencie com segurança o acesso aos serviços e recursos da AWS. Você pode criar e gerenciar usuários e grupos da AWS e usar permissões para permitir e negar o acesso deles aos recursos da AWS.',
     domain: 'Segurança e Conformidade',
   },
@@ -1195,8 +1196,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf25',
     text: 'Qual das seguintes afirmações sobre o AWS IAM é VERDADEIRA?',
-    options: ['O IAM é um serviço regional.', 'Por padrão, novos usuários IAM têm permissões completas para todos os serviços AWS.', 'O IAM permite que você gerencie o acesso de usuários e permissões globalmente.', 'As políticas do IAM são escritas em XML.'],
-    correctAnswerIndex: 2, // IAM é global. Políticas são JSON. Novos usuários não tem permissões.
+    options: ['O IAM permite que você gerencie o acesso de usuários e permissões globalmente.', 'O IAM é um serviço regional.', 'Por padrão, novos usuários IAM têm permissões completas para todos os serviços AWS.', 'As políticas do IAM são escritas em XML.'],
+    correctAnswerIndex: 0, // Original: 2
     explanation: 'O AWS Identity and Access Management (IAM) é um serviço global. Os usuários, grupos, roles e políticas do IAM que você cria são globais e não estão vinculados a uma região específica.',
     domain: 'Segurança e Conformidade',
   },
@@ -1260,8 +1261,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf33',
     text: 'O que é uma Região da AWS?',
-    options: ['Um único data center físico.', 'Uma área geográfica separada que contém múltiplos locais isolados e fisicamente separados conhecidos como Zonas de Disponibilidade.', 'Um tipo de instância EC2.', 'Um grupo de security groups.'],
-    correctAnswerIndex: 1,
+    options: ['Um único data center físico.', 'Um tipo de instância EC2.', 'Um grupo de security groups.', 'Uma área geográfica separada que contém múltiplos locais isolados e fisicamente separados conhecidos como Zonas de Disponibilidade.'],
+    correctAnswerIndex: 3, // Original: 1 (text was same but at different index)
     explanation: 'Uma Região da AWS é uma área geográfica física no mundo onde a AWS tem múltiplos locais isolados e fisicamente separados conhecidos como Zonas de Disponibilidade (AZs). Cada AZ tem energia, refrigeração e rede independentes.',
     domain: 'Tecnologia e Serviços de Nuvem',
   },
@@ -1365,8 +1366,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf46',
     text: 'Qual modelo de precificação do Amazon EC2 permite que os clientes façam lances em capacidade EC2 não utilizada, oferecendo os maiores descontos, mas com a possibilidade de as instâncias serem interrompidas?',
-    options: ['Instâncias Sob Demanda', 'Instâncias Reservadas', 'Instâncias Spot', 'Hosts Dedicados'],
-    correctAnswerIndex: 2,
+    options: ['Instâncias Spot', 'Instâncias Sob Demanda', 'Instâncias Reservadas', 'Hosts Dedicados'],
+    correctAnswerIndex: 0, // Original: 2
     explanation: 'As Instâncias Spot do EC2 permitem que você solicite capacidade de computação EC2 não utilizada com descontos de até 90% em comparação com os preços Sob Demanda. No entanto, a AWS pode recuperar essas instâncias com um aviso de dois minutos se precisar da capacidade de volta.',
     domain: 'Faturamento, Preços e Suporte',
   },
@@ -1421,8 +1422,8 @@ const clfQuestions: Question[] = [
   {
     id: 'clf53',
     text: 'Qual ferramenta da AWS pode ajudá-lo a estimar os custos de executar sua arquitetura específica na Nuvem AWS antes de implantá-la?',
-    options: ['AWS Cost Explorer', 'AWS Budgets', 'Calculadora de Preços da AWS (AWS Pricing Calculator)', 'AWS Organizations'],
-    correctAnswerIndex: 2,
+    options: ['AWS Cost Explorer', 'Calculadora de Preços da AWS (AWS Pricing Calculator)', 'AWS Budgets', 'AWS Organizations'],
+    correctAnswerIndex: 1, // Original: 2
     explanation: 'A Calculadora de Preços da AWS permite que você explore os serviços da AWS e crie uma estimativa de custo para sua arquitetura específica na AWS. Você pode modelar suas soluções antes de construí-las, explorar os pontos de preço e analisar os cálculos por trás de sua estimativa.',
     domain: 'Faturamento, Preços e Suporte',
   },
@@ -1446,7 +1447,7 @@ const clfQuestions: Question[] = [
     id: 'clf56',
     text: 'Qual das seguintes opções de compra do EC2 oferece a MAIOR flexibilidade para alterar famílias de instâncias, sistemas operacionais ou regiões, enquanto ainda recebe um desconto por um compromisso de uso?',
     options: ['Instâncias Reservadas Padrão', 'Instâncias Reservadas Conversíveis', 'Savings Plans de Computação', 'Instâncias Spot'],
-    correctAnswerIndex: 2, // Compute Savings Plans are the most flexible for commitment.
+    correctAnswerIndex: 2,
     explanation: 'Os Savings Plans de Computação oferecem a maior flexibilidade e ajudam a reduzir seus custos em até 66%. Esses planos se aplicam automaticamente ao uso de instâncias EC2, independentemente da família de instâncias, tamanho, AZ, região, SO ou locação, e também se aplicam ao uso do Fargate e Lambda.',
     domain: 'Faturamento, Preços e Suporte',
   },
@@ -1491,8 +1492,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip1',
     text: 'Qual dos seguintes MELHOR descreve Machine Learning (ML)?',
-    options: ['Um campo da ciência da computação que se concentra na criação de máquinas que podem executar tarefas que normalmente exigiriam inteligência humana.', 'Um subcampo da IA que dá aos computadores a capacidade de aprender sem serem explicitamente programados, identificando padrões em dados.', 'Um tipo de algoritmo de ML que usa dados rotulados para fazer previsões.', 'Uma rede neural com muitas camadas.'],
-    correctAnswerIndex: 1,
+    options: ['Um subcampo da IA que dá aos computadores a capacidade de aprender sem serem explicitamente programados, identificando padrões em dados.', 'Um campo da ciência da computação que se concentra na criação de máquinas que podem executar tarefas que normalmente exigiriam inteligência humana.', 'Um tipo de algoritmo de ML que usa dados rotulados para fazer previsões.', 'Uma rede neural com muitas camadas.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'Machine Learning (ML) é um tipo de inteligência artificial (IA) que permite que sistemas de software aprendam com dados e melhorem seu desempenho em tarefas específicas ao longo do tempo, sem serem explicitamente programados para cada caso.',
     domain: 'Fundamentos de IA e ML',
   },
@@ -1531,8 +1532,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip6',
     text: 'Qual serviço da AWS é uma plataforma totalmente gerenciada que permite aos desenvolvedores e cientistas de dados construir, treinar e implantar modelos de machine learning em escala?',
-    options: ['Amazon Rekognition', 'Amazon SageMaker', 'Amazon Comprehend', 'AWS Lambda'],
-    correctAnswerIndex: 1,
+    options: ['Amazon Rekognition', 'Amazon Comprehend', 'Amazon SageMaker', 'AWS Lambda'],
+    correctAnswerIndex: 2, // Original: 1
     explanation: 'O Amazon SageMaker é um serviço totalmente gerenciado que fornece a cada desenvolvedor e cientista de dados a capacidade de construir, treinar e implantar modelos de machine learning (ML) rapidamente.',
     domain: 'Fundamentos de IA e ML',
   },
@@ -1596,8 +1597,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip14',
     text: 'O que é "prompt engineering" no contexto de IA Generativa?',
-    options: ['O processo de projetar a arquitetura de hardware para treinar LLMs.', 'A arte e a ciência de criar entradas (prompts) eficazes para guiar um modelo de IA generativa a produzir a saída desejada.', 'O desenvolvimento de novos algoritmos de IA generativa.', 'A otimização do consumo de energia de modelos de IA.'],
-    correctAnswerIndex: 1,
+    options: ['O processo de projetar a arquitetura de hardware para treinar LLMs.', 'O desenvolvimento de novos algoritmos de IA generativa.', 'A otimização do consumo de energia de modelos de IA.', 'A arte e a ciência de criar entradas (prompts) eficazes para guiar um modelo de IA generativa a produzir a saída desejada.'],
+    correctAnswerIndex: 3, // Original: 1
     explanation: 'Prompt engineering é o processo de projetar e refinar cuidadosamente as instruções de entrada (prompts) dadas a um modelo de IA generativa (como um LLM) para obter resultados mais precisos, relevantes e úteis.',
     domain: 'Fundamentos de IA Generativa',
   },
@@ -1693,8 +1694,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip26',
     text: 'O que é "fine-tuning" (ajuste fino) de um Modelo de Fundação?',
-    options: ['Ajustar os hiperparâmetros do modelo durante a inferência.', 'O processo de treinar adicionalmente um modelo de fundação pré-treinado em um conjunto de dados menor e específico da tarefa para especializá-lo nessa tarefa.', 'Selecionar o prompt ideal para uma determinada tarefa.', 'Reduzir o tamanho do modelo para implantação em dispositivos de borda.'],
-    correctAnswerIndex: 1,
+    options: ['O processo de treinar adicionalmente um modelo de fundação pré-treinado em um conjunto de dados menor e específico da tarefa para especializá-lo nessa tarefa.', 'Ajustar os hiperparâmetros do modelo durante a inferência.', 'Selecionar o prompt ideal para uma determinada tarefa.', 'Reduzir o tamanho do modelo para implantação em dispositivos de borda.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'Fine-tuning é o processo de pegar um modelo de fundação que já foi pré-treinado em uma grande quantidade de dados gerais e treiná-lo um pouco mais em um conjunto de dados menor e mais específico, relacionado à tarefa que você deseja que ele execute. Isso adapta o modelo para melhor desempenho na tarefa alvo.',
     domain: 'Aplicações de Modelos de Fundação',
   },
@@ -1798,8 +1799,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip39',
     text: 'Qual ferramenta ou recurso do Amazon Bedrock ajuda a implementar salvaguardas para filtrar conteúdo prejudicial ou indesejado nas interações com Modelos de Fundação?',
-    options: ['Knowledge Bases for Amazon Bedrock', 'Agents for Amazon Bedrock', 'Provisioned Throughput', 'Guardrails for Amazon Bedrock'],
-    correctAnswerIndex: 3,
+    options: ['Guardrails for Amazon Bedrock', 'Knowledge Bases for Amazon Bedrock', 'Agents for Amazon Bedrock', 'Provisioned Throughput'],
+    correctAnswerIndex: 0, // Original: 3
     explanation: 'Guardrails for Amazon Bedrock permite que os desenvolvedores implementem salvaguardas em suas aplicações de IA generativa com base em seus casos de uso e políticas de IA responsável. Você pode criar várias configurações de guardrails, definir tópicos negados e configurar filtros para conteúdo prejudicial.',
     domain: 'Diretrizes para IA Responsável',
   },
@@ -1887,8 +1888,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip50',
     text: 'Ao usar o Amazon SageMaker, como você pode garantir que as instâncias de notebook e os trabalhos de treinamento só possam acessar os recursos AWS necessários, seguindo o princípio de menor privilégio?',
-    options: ['Concedendo permissões de administrador a todas as roles do SageMaker.', 'Anexando roles do IAM com políticas de permissões cuidadosamente definidas às instâncias de notebook, trabalhos de treinamento e endpoints de modelo.', 'Armazenando credenciais AWS diretamente nos notebooks.', 'Desabilitando todo o acesso à rede para recursos do SageMaker.'],
-    correctAnswerIndex: 1,
+    options: ['Concedendo permissões de administrador a todas as roles do SageMaker.', 'Armazenando credenciais AWS diretamente nos notebooks.', 'Anexando roles do IAM com políticas de permissões cuidadosamente definidas às instâncias de notebook, trabalhos de treinamento e endpoints de modelo.', 'Desabilitando todo o acesso à rede para recursos do SageMaker.'],
+    correctAnswerIndex: 2, // Original: 1
     explanation: 'O Amazon SageMaker usa roles do IAM para conceder permissões a seus vários componentes (notebooks, trabalhos de treinamento, endpoints). É crucial создать e anexar roles com políticas que concedam apenas as permissões mínimas necessárias para cada componente realizar sua tarefa, aderindo ao princípio de menor privilégio.',
     domain: 'Segurança, Conformidade e Governança para Soluções de IA',
   },
@@ -1897,7 +1898,7 @@ const aipQuestions: Question[] = [
     text: 'O que é "data lineage" (linhagem de dados) e por que é importante para a governança de IA?',
     options: ['Um tipo de modelo de IA para prever a ancestralidade.', 'O rastreamento do ciclo de vida dos dados, incluindo sua origem, transformações e movimentações. É importante para a governança de IA para garantir a qualidade dos dados, auditabilidade, conformidade e reprodutibilidade dos modelos.', 'Um método para criptografar dados de IA.', 'Uma técnica para anonimizar dados pessoais.'],
     correctAnswerIndex: 1,
-    explanation: 'Linhagem de dados refere-se à capacidade de rastrear a origem dos dados, como eles foram transformados e para onde foram movidos ao longo do tempo. Na IA, isso é vital para entender a proveniência dos dados de treinamento, garantir a qualidade, facilitar a auditoria, depurar modelos e cumprir requisitos regulatórios.',
+    explanation: 'Linhagem de dados refere-se à capacidade de rastrear a origem dos dados, como eles foram transformados e para onde foram movidos ao longo do tempo. Na IA, isso é vital para entender a proveniência dos dados de treinamento, garantir a qualidade, facilitar la auditoria, depurar modelos e cumprir requisitos regulatórios.',
     domain: 'Segurança, Conformidade e Governança para Soluções de IA',
   },
   {
@@ -1911,8 +1912,8 @@ const aipQuestions: Question[] = [
   {
     id: 'aip53',
     text: 'O que é "prompt injection" (injeção de prompt) em LLMs e como pode ser uma ameaça à segurança?',
-    options: ['Uma técnica para melhorar a qualidade das respostas do LLM.', 'Um tipo de ataque onde um invasor cria uma entrada maliciosa (prompt) para manipular o comportamento de um LLM, potencialmente fazendo-o ignorar instruções anteriores, vazar dados confidenciais ou executar ações não intencionais.', 'O processo de fornecer muitos exemplos no prompt.', 'Uma forma de otimizar a velocidade de inferência do LLM.'],
-    correctAnswerIndex: 1,
+    options: ['Um tipo de ataque onde um invasor cria uma entrada maliciosa (prompt) para manipular o comportamento de um LLM, potencialmente fazendo-o ignorar instruções anteriores, vazar dados confidenciais ou executar ações não intencionais.', 'Uma técnica para melhorar a qualidade das respostas do LLM.', 'O processo de fornecer muitos exemplos no prompt.', 'Uma forma de otimizar a velocidade de inferência do LLM.'],
+    correctAnswerIndex: 0, // Original: 1
     explanation: 'A injeção de prompt é um ataque de segurança contra aplicações baseadas em LLM. Um invasor pode criar um prompt que engana o LLM para que ele ignore suas instruções originais ou execute ações prejudiciais, como revelar informações confidenciais com as quais foi instruído a não compartilhar, ou gerar conteúdo inadequado.',
     domain: 'Segurança, Conformidade e Governança para Soluções de IA',
   },

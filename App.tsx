@@ -201,6 +201,7 @@ const App: React.FC = () => {
       <footer className="w-full max-w-4xl text-center py-6 text-gray-600 text-sm">
         <p>&copy; {new Date().getFullYear()} Simulador de Quiz AWS. Apenas para fins educacionais.</p>
         <p>Este não é um produto oficial da AWS. As questões são exemplos baseados em blueprints públicos.</p>
+        <p>Feito por @marmorear</p>
       </footer>
     </div>
   );
